@@ -13,12 +13,10 @@ val sc = new SparkContext(conf)
 /**
  * Beginning of script : Computes the following
     Sessionize the web log by IP. Sessionize = aggregrate all page hits by visitor/IP during a fixed time window. https://en.wikipedia.org/wiki/Session_(web_analytics)
-
     Determine the average session time
-
     Determine unique URL visits per session. To clarify, count a hit to a unique URL only once per session.
-
     Find the most engaged users, ie the IPs with the longest session times
+    Saves the output of each computation in the respective files
  */
 
 import java.sql.Timestamp

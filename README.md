@@ -19,8 +19,8 @@
 ####Spark Shell
 - Download Spark from http://spark.apache.org/downloads.html
 - open Spark Shell using ./bin/spark-shell
+- copy the code snippet from `src/main/scala/com/weblogchallenge/script.sc`
 - update the input file location on line #89
-- copy the code snippet from `src/main/scala/com/weblogchallenge/script.sc` 
 - do not copy lines #9-11 as sc object is already provided by spark shell 
 - enter paste mode in spark shell using `:paste`
 - hit Ctrl + D after pasting the code
@@ -30,8 +30,7 @@
 - results from one of executions is included in the [output](output/) directory of the project.
 
 ####Spark Cluster Mode
-- the project can be build as jar and submitted to spark cluster using 
-- ./bin/spark-submit
+- the project can be build as jar and submitted to spark cluster using ./bin/spark-submit
 - [see here for more details](http://spark.apache.org/docs/latest/programming-guide.html#launching-spark-jobs-from-java--scala)
 - to build the project jar run `sbt package`
 

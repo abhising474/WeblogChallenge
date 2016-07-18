@@ -5,12 +5,17 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 import org.apache.spark.rdd.RDD
-import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.{ SparkConf, SparkContext }
 
-import scala.concurrent.duration.{Duration, _}
+import scala.concurrent.duration.{ Duration, _ }
 
 /**
  * Created by asingh on 16-07-14.
+ * Computes the following
+ * Sessionize the web log by IP. Sessionize = aggregrate all page hits by visitor/IP during a fixed time window. https://en.wikipedia.org/wiki/Session_(web_analytics)
+ * Determine the average session time
+ * Determine unique URL visits per session. To clarify, count a hit to a unique URL only once per session.
+ * Find the most engaged users, ie the IPs with the longest session times
  */
 object App {
 
