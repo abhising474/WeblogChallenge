@@ -99,9 +99,9 @@ class AppSpec extends FlatSpec with Matchers with BeforeAndAfter {
     val engaged = App.mostEngagedVisitors(sessionByTime).collect()
     val sample = fixture.seed
     engaged should contain theSameElementsAs Seq(
-      ("192.168.1.10", 1, sample(2).timestamp - sample(0).timestamp),
-      ("10.17.123.21", 2, sample(5).timestamp - sample(4).timestamp),
-      ("10.17.123.21", 1, 0L))
+      (("192.168.1.10", 1), sample(2).timestamp - sample(0).timestamp),
+      (("10.17.123.21", 2), sample(5).timestamp - sample(4).timestamp),
+      (("10.17.123.21", 1), 0L))
 
   }
 

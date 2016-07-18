@@ -138,11 +138,12 @@ object App {
    * @param sessByTime
    * @return  RDD[(String, Int, Long)]
    */
-  def mostEngagedVisitors(sessByTime: RDD[(String, Int, Long, Long)]): RDD[(String, Int, Long)] = {
+  def mostEngagedVisitors(sessByTime: RDD[(String, Int, Long, Long)]): RDD[((String, Int), Long)] = {
     sessByTime
-      .map(s => (s._1, s._2, s._4 - s._3))
-      .sortBy(_._3, false)
-
+      .map(s => ((s._1, s._2), s._4 - s._3))
+      .map(_.swap)
+      .sortByKey(false)
+      .map(_.swap)
   }
 
   def main(args: Array[String]) {

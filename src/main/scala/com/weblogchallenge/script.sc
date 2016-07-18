@@ -170,15 +170,17 @@ sessionByUrl.map(u => s"${u._1._1} ${u._1._2} ${u._2}")
  * sorts it by time diff in the descending order.
  */
 val sortedBySession = sessionByTime
-  .map(s => (s._1, s._2, s._4 - s._3))
-  .sortBy(_._3, false)
+  .map(s => ((s._1, s._2), s._4 - s._3))
+  .map(_.swap)
+  .sortByKey(false, 1)
+  .map(_.swap)
 
 /**
  * Formats the [[sortedBySession]] to a more readable format and
  * collects data from all partitions and
  * writes it to the file session-sorted-by-time-timestamp.
  */
-sortedBySession.map(s => s"${s._1} ${s._2} ${s._3} ${Duration(s._3, TimeUnit.MILLISECONDS).toMinutes} Minutes")
+sortedBySession.map(s => s"${s._1._1} ${s._1._2} ${s._2} ${Duration(s._2, TimeUnit.MILLISECONDS).toMinutes} Minutes")
   .repartition(1).saveAsTextFile(outDir + "session-sorted-by-time-" + System.currentTimeMillis())
 
 /**
